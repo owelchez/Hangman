@@ -5,40 +5,105 @@
 
 										<!-- Libraries -->
 
+<link rel="stylesheet" type="text/css" href="assets/CSS/reset.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
-<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 
+	<style>
+		body 
+			{ 
+			  background: url("assets/images/limbo3.jpg") no-repeat center center fixed; 
+			  -webkit-background-size: cover;
+			  -moz-background-size: cover;
+			  -o-background-size: cover;
+			  background-size: cover;
+			}
+	</style>
 
 </head>
 <body>
-	<div>
-		<div id="title"><h2>Welcome To Hangman Game!</h2></div>
-	</div>
+	<div class="container">
+			<div>
+				<img id="title" src="assets/images/welcome.png">
+				<img id="title2" src="assets/images/to.png">		
+				<img id="title2" src="assets/images/the.png">
+				<img id="title" src="assets/images/hangman.png">
+				<img id="title" src="assets/images/game.png">	
+			</div>
 
-<div id="alphabetContainer"></div>
+			<div id="gameContent">
+			<img id="pic" src="assets/images/spookyForest.jpg">
+				<div id="gameBody"></div>
+			</img>
+			</div>
+
+	
 
 
+		<div class="footer">
+			<div id="alphabetContainer">
+				<!-- <button type="button" class="btn btn-default"></button> -->
+			</div>
+		</div>
+
+<button id="reset"><span>RESET</span></button>
 
 
-
-
+</div>
 </body>
 </html>
 
-
+<script   src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="   crossorigin="anonymous"></script>
 <script type="text/javascript">
+
 console.log("I will be the best!");
 
-var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-var letterDiv = $('<div>');
+	var selectedWord = " ";
+	
+					/*Create an array with the alphabet letters*/
 
-var alphaDiv = $('#alphabetContainer').append(letterDiv);
+var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "_"];
+
+					/*Create objects with categories*/
+
+		var horror = ["the blair witch project", "resident evil", "the amityville horror", "the strangers", "the clown statue", "the vanishing hitchhiker"];
+
+		selectedWord = Math.floor(Math.random() * (1 + horror.length - 1));
+			
+			console.log(horror[selectedWord]);
+
+
+
+			/*Loop over every character and add it to a button on the screen*/
+			for (var index = 0; index < alphabet.length - 1; index++){
+				var letterDiv = $("<button>", {
+					type: "button",
+					class: "btn btn-default",
+					id: "buttonMargin"
+				});
+
+				letterDiv.append(alphabet[index]);
+
+				$("#alphabetContainer").append(letterDiv);
+			}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+$('#reset').on('click', function() {
+			/*$("#display").empty(); */     //This will reset the game
+		});
 
 
 </script>
