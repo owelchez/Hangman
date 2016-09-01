@@ -1,7 +1,6 @@
 #title
 {
 	text-align: center;
-
 }
 
 #pic
@@ -19,13 +18,12 @@
 
 .btn-default
 {
-	background-color: black;
-	color: white;
+	border-radius: 10px;
 }
 
-#letters
+.letters
 {
-	background-color: yellow;
+	background-color: grey;
 }
 
 .footer
@@ -54,7 +52,7 @@
 
 button
 {
-	color: red;
+	color: black;
 }
 
 #buttonMargin

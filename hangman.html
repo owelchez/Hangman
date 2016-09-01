@@ -55,50 +55,53 @@
 
 <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
 <script type="text/javascript">
+$( document ).ready(function() {
 
-
-
-	var selectedWord = " ";
+	var selectedWord = "";
+	var userInput = "";
 	
 					/*Create an array with the alphabet letters*/
 
-var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "_"];
+	var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
 
-					/*Create objects with categories*/
+					/*Creates an array of random words*/
 
-		var horror = ["the blair witch project", "resident evil", "the amityville horror", "the strangers", "the clown statue", "the vanishing hitchhiker"];
+	var horror = ["the blair witch project", "resident evil", "the amityville horror", "the strangers", "the clown statue", "the vanishing hitchhiker"];
 
+	function randomWord(){
 		selectedWord = Math.floor(Math.random() * (1 + horror.length - 1));
-			
-			console.log(horror[selectedWord]);
+		console.log(horror[selectedWord]);
+	}
+
+	function renderButtons(){
+		/*Loop over every character and add it to a button on the screen*/
+		for (var index = 0; index < alphabet.length - 1; index++){
+			var letterDiv = $("<button>", {
+				type: "button",
+				class: "btn btn-default",
+				id: "buttonMargin",
+				value: alphabet[index],
+				class: "letters"
+			});
 
 
+			letterDiv.append(alphabet[index]);
 
-			/*Loop over every character and add it to a button on the screen*/
-			for (var index = 0; index < alphabet.length - 1; index++){
-				var letterDiv = $("<button>", {
-					type: "button",
-					class: "btn btn-default",
-					id: "buttonMargin"
-				});
+			$("#alphabetContainer").append(letterDiv);
+		}
+	}
 
-				letterDiv.append(alphabet[index]);
+	$('.letters').on('click', function(){
+		console.log('Click!!');
+	})
 
-				$("#alphabetContainer").append(letterDiv);
-			}
+	function checkGuessed(){
 
-			
+	}
 
+	renderButtons();
 
-
-
-
-
-
-
-
-
-
+	
 
 
 $('#reset').on('click', function() {
@@ -106,4 +109,8 @@ $('#reset').on('click', function() {
 		});
 
 
+
+});
 </script>
+
+
