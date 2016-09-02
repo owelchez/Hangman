@@ -21,11 +21,6 @@
 	border-radius: 10px;
 }
 
-.letters
-{
-	background-color: grey;
-}
-
 .footer
 {
 	clear: both;
@@ -50,13 +45,11 @@
 	width: 7%;	
 }
 
-button
-{
-	color: black;
-}
-
-#buttonMargin
+.buttonMargin
 {
 	margin-right: 10px;
 	margin-bottom: 5px;
+	color: black;
+	background-color: grey;
+	border-radius: 5px;
 }

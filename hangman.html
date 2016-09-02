@@ -42,12 +42,11 @@
 
 		<div class="footer">
 			<div id="alphabetContainer">
-				<!-- <button type="button" class="btn btn-default"></button> -->
+				<!-- <button type="button" class="btn btn-default" class="buttonMargin" id="let"></button> -->
 			</div>
 		</div>
 
 <button id="reset"><span>RESET</span></button>
-
 
 </div>
 </body>
@@ -59,6 +58,7 @@ $( document ).ready(function() {
 
 	var selectedWord = "";
 	var userInput = "";
+	var userGuess = "";
 	
 					/*Create an array with the alphabet letters*/
 
@@ -66,41 +66,41 @@ $( document ).ready(function() {
 
 					/*Creates an array of random words*/
 
-	var horror = ["the blair witch project", "resident evil", "the amityville horror", "the strangers", "the clown statue", "the vanishing hitchhiker"];
+	var horror = ["THE BLAIR WITCH PROJECT", "RESIDENT EVIL", "THE AMITYVILLE HORROR", "THE STRANGERS", "THE CLOWN STATUE", "THE VANISHING HITCHHIKER"];
 
 	function randomWord(){
 		selectedWord = Math.floor(Math.random() * (1 + horror.length - 1));
-		console.log(horror[selectedWord]);
 	}
 
 	function renderButtons(){
 		/*Loop over every character and add it to a button on the screen*/
 		for (var index = 0; index < alphabet.length - 1; index++){
-			var letterDiv = $("<button>", {
+			var letterButton = $("<button>", {
 				type: "button",
 				class: "btn btn-default",
-				id: "buttonMargin",
+				class: "buttonMargin",
 				value: alphabet[index],
-				class: "letters"
+				data: "let"
 			});
 
 
-			letterDiv.append(alphabet[index]);
+			letterButton.append(alphabet[index]);
 
-			$("#alphabetContainer").append(letterDiv);
+			$("#alphabetContainer").append(letterButton);
 		}
 	}
 
 	$('.letters').on('click', function(){
-		console.log('Click!!');
+
 	})
 
-	function checkGuessed(){
-
-	}
+	
 
 	renderButtons();
 
+	$('.btn btn-default').on('click', function(event){
+
+	})
 	
 
 
@@ -112,5 +112,3 @@ $('#reset').on('click', function() {
 
 });
 </script>
-
-
