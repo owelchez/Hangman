@@ -54,11 +54,12 @@
 
 <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-$( document ).ready(function() {
+$(document).ready(function() {
 
 	var selectedWord = "";
 	var userInput = "";
 	var userGuess = "";
+	var letterButton = [];
 	
 					/*Create an array with the alphabet letters*/
 
@@ -70,45 +71,32 @@ $( document ).ready(function() {
 
 	function randomWord(){
 		selectedWord = Math.floor(Math.random() * (1 + horror.length - 1));
-	}
+	};
 
 	function renderButtons(){
-		/*Loop over every character and add it to a button on the screen*/
-		for (var index = 0; index < alphabet.length - 1; index++){
-			var letterButton = $("<button>", {
-				type: "button",
+		for(index = 0; index < alphabet.length - 1; index++){
+			letterButton = $('<button>', {
 				class: "btn btn-default",
 				class: "buttonMargin",
 				value: alphabet[index],
-				data: "let"
-			});
-
+				id: "boton"
+			})
 
 			letterButton.append(alphabet[index]);
-
+		
 			$("#alphabetContainer").append(letterButton);
 		}
-	}
-
-	$('.letters').on('click', function(){
-
-	})
-
-	
-
-	renderButtons();
-
-	$('.btn btn-default').on('click', function(event){
-
-	})
-	
-
+	};
 
 $('#reset').on('click', function() {
 			/*$("#display").empty(); */     //This will reset the game
 		});
 
+renderButtons();
 
+$(document).on('click', '#boton', function(){
+	console.log(this.value);
+})
 
 });
 </script>
