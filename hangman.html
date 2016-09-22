@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="assets/CSS/reset.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
 
 	<style>
 		body 
@@ -23,7 +24,7 @@
 </head>
 <body>
 	<div class="container">
-			<div>
+			<div id="animateTitle">
 				<img id="title" src="assets/images/welcome.png">
 				<img id="title2" src="assets/images/to.png">		
 				<img id="title2" src="assets/images/the.png">
@@ -32,7 +33,7 @@
 			</div>
 
 			<div id="gameContent">
-			<img id="pic" src="assets/images/spookyForest.jpg">
+			<img id="pic" id="animatedPic" src="assets/images/spookyForest.jpg">
 				<div id="gameBody"></div>
 			</img>
 			</div>
@@ -73,7 +74,7 @@ $(document).ready(function() {
 		selectedWord = Math.floor(Math.random() * (1 + horror.length - 1));
 	};
 
-	function renderButtons(){
+	function renderButtons(callback){
 		for(index = 0; index < alphabet.length - 1; index++){
 			letterButton = $('<button>', {
 				class: "btn btn-default",
@@ -86,13 +87,32 @@ $(document).ready(function() {
 		
 			$("#alphabetContainer").append(letterButton);
 		}
+		callback();
 	};
+
+	function slideInRight(callback){
+		$('#animateTitle').addClass('animated slideInRight');
+		callback(hingeTitle);
+	};
+
+	function hingeTitle(){
+		$('#animateTitle').addClass('animated hinge');
+	}
+
+	function animatePage(){
+		renderButtons(slideInRight);
+	}
+
+
 
 $('#reset').on('click', function() {
 			/*$("#display").empty(); */     //This will reset the game
 		});
 
-renderButtons();
+
+
+
+
 
 $(document).on('click', '#boton', function(){
 	console.log(this.value);
