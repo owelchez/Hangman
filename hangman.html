@@ -92,16 +92,25 @@ $(document).ready(function() {
 
 	function slideInRight(callback){
 		$('#animateTitle').addClass('animated slideInRight');
-		callback(hingeTitle);
+		callback();
 	};
 
-	function hingeTitle(){
+	function hingeTitle(callback){
 		$('#animateTitle').addClass('animated hinge');
+		callback();
 	}
 
-	function animatePage(){
-		renderButtons(slideInRight);
+	function playAnimation(callback){
+		renderButtons(function(){
+			slideInRight(function(){
+				console.log('Success!');
+			})
+		})
 	}
+
+	
+
+	
 
 
 
@@ -109,9 +118,7 @@ $('#reset').on('click', function() {
 			/*$("#display").empty(); */     //This will reset the game
 		});
 
-
-
-
+	playAnimation();
 
 
 $(document).on('click', '#boton', function(){
