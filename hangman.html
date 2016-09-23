@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<div class="container">
+<div class="container">
 			<div id="animateTitle">
 				<img id="title" src="assets/images/welcome.png">
 				<img id="title2" src="assets/images/to.png">		
@@ -32,11 +32,12 @@
 				<img id="title" src="assets/images/game.png">	
 			</div>
 
-			<div id="gameContent">
+			<!-- <div id="gameContent">
 			<img id="pic" id="animatedPic" src="assets/images/spookyForest.jpg">
-				<div id="gameBody"></div>
 			</img>
-			</div>
+			</div> -->
+
+
 
 	
 
@@ -47,9 +48,12 @@
 			</div>
 		</div>
 
-<button id="reset"><span>RESET</span></button>
+		<button id="reset"><span>RESET</span></button>
 
 </div>
+				<audio autoplay>
+				  <source src="assets/sounds/eerie.mp3" type="audio/mpeg">
+				</audio>
 </body>
 </html>
 
@@ -57,10 +61,14 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
+	var audioElement = document.createElement('audio');
+				        audioElement.setAttribute('src', 'assets/sounds/darkLaugh.mp3');
+
 	var selectedWord = "";
 	var userInput = "";
 	var userGuess = "";
 	var letterButton = [];
+	var dashes = [];
 	
 					/*Create an array with the alphabet letters*/
 
@@ -69,6 +77,12 @@ $(document).ready(function() {
 					/*Creates an array of random words*/
 
 	var horror = ["THE BLAIR WITCH PROJECT", "RESIDENT EVIL", "THE AMITYVILLE HORROR", "THE STRANGERS", "THE CLOWN STATUE", "THE VANISHING HITCHHIKER"];
+
+	playAnimation(function(){
+		//renderDashes();
+	});
+
+
 
 	function randomWord(){
 		selectedWord = Math.floor(Math.random() * (1 + horror.length - 1));
@@ -106,23 +120,27 @@ $(document).ready(function() {
 				console.log('Success!');
 			})
 		})
+		callback();
 	}
 
-	
+	function matchLetter(){
+
+	};
 
 	
-
 
 
 $('#reset').on('click', function() {
 			/*$("#display").empty(); */     //This will reset the game
 		});
 
-	playAnimation();
+	
 
 
 $(document).on('click', '#boton', function(){
-	console.log(this.value);
+	userInput = this.value;
+	console.log(userInput);
+	console.log(document);
 })
 
 });
