@@ -3,6 +3,17 @@
 	text-align: center;
 }
 
+#footer
+{
+	clear: both;
+	position:fixed;
+    bottom:0;
+	text-align: center;
+	height: 65px;
+    width: 100%;
+}
+
+
 #pic
 {
 	width: 90%;
