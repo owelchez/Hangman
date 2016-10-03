@@ -39,13 +39,19 @@
 			</div>
 
 			
+
+</div>
+
+			<div id="category">
+				<h2>Horror Story</h2>
+				<div><span id="word">_</span></div>
+			</div>
+
+
 		<div id="footer">
 			<button id="reset"><span>RESET</span></button>
 		</div>
 
-		
-
-</div>
 				<audio autoplay>
 				  <source src="assets/sounds/eerie.mp3" type="audio/mpeg">
 				</audio>
@@ -59,9 +65,9 @@ $(document).ready(function() {
 	var audioElement = document.createElement('audio');
 				        audioElement.setAttribute('src', 'assets/sounds/darkLaugh.mp3');
 
-	var selectedWord = "";
+	var currentWord = "";
 	var userInput = "";
-	var userGuess = "";
+	var guesses = "";
 	var letterButton = [];
 	var dashes = [];
 	
@@ -73,17 +79,26 @@ $(document).ready(function() {
 
 	var horror = ["THE BLAIR WITCH PROJECT", "RESIDENT EVIL", "THE AMITYVILLE HORROR", "THE STRANGERS", "THE CLOWN STATUE", "THE VANISHING HITCHHIKER"];
 
-	playAnimation(function(){
-		//renderDashes();
-	});
+	function startGame(){
+		guesses = 10;
 
+		currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
 
+		currentWord.split("");
 
-	function randomWord(){
-		selectedWord = Math.floor(Math.random() * (1 + horror.length - 1));
+	}
+
+	function renderDashes(){
+		for(index = 0; index < currentWord.length; index++){
+			if(currentWord[index] === ' '){
+				$('#word').append(' ');
+			} else {
+			$('#word').append('_ ');
+			}
+		}
 	};
 
-	function renderButtons(callback){
+	function renderButtons(slideInRight){
 		for(index = 0; index < alphabet.length - 1; index++){
 			letterButton = $('<button>', {
 				class: "btn btn-default",
@@ -96,7 +111,7 @@ $(document).ready(function() {
 		
 			$("#alphabetContainer").append(letterButton);
 		}
-		callback();
+		slideInRight();
 	};
 
 	function slideInRight(callback){
@@ -109,33 +124,30 @@ $(document).ready(function() {
 		callback();
 	}
 
-	function playAnimation(callback){
+	function playAnimation(){
 		renderButtons(function(){
 			slideInRight(function(){
 				console.log('Success!');
 			})
 		})
-		callback();
-	}
-
-	function matchLetter(){
-
 	};
 
+
+
 	
 
 
-$('#reset').on('click', function() {
-			/*$("#display").empty(); */     //This will reset the game
+		$('#reset').on('click', function() {
+			window.location.reload();
 		});
 
-	
+		playAnimation();
 
 
-$(document).on('click', '#boton', function(){
-	userInput = this.value;
-	console.log(userInput);
-})
-
+		$(document).on('click', '#boton', function(){
+			userInput = this.value;
+			console.log(userInput);
+			
+		})
 })
 </script>
