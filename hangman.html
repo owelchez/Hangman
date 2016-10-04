@@ -87,6 +87,7 @@ $(document).ready(function() {
 		//currentWord.split("");
 
 		console.log(currentWord);
+		console.log('Guesses ' + guesses);
 
 		playAnimation();
 
@@ -97,7 +98,7 @@ $(document).ready(function() {
 			if(currentWord['']){
 				$('#word').append('');
 			} else if (currentWord[index]){
-			$('#word').append(currentWord[index]);
+			$('#word').append('_ ');
 			}
 		}
 	};
