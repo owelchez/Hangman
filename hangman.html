@@ -146,19 +146,12 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 
+		playAnimation();
 		
-		startGame();
 
-		/*$(document).on('click', '#boton', function(){
-			userInput = this.value;
-			for(index = 0; index < currentWord.length; index++){
-				if(userInput === currenword[index]){
-					$('#word').
-				}
-			}
-			console.log(userInput);
-			
-		})*/
+		$('#alphabetContainer').on('click', function(event){
+			console.log(event.target.value);
+		})
 		
 })
 </script>
