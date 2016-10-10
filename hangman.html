@@ -38,12 +38,11 @@
 				<!-- <button type="button" class="btn btn-default" class="buttonMargin" id="let"></button> -->
 			</div>
 
-			
-
 </div>
 
 			<div id="category">
-				<h2>Horror Story</h2>
+				<h2>Secret Word Category</h2>
+				<h2>"Horror"</h2>
 				<div><span id="word"></span></div>
 			</div>
 
@@ -95,15 +94,16 @@ $(document).ready(function() {
 
 	function renderDashes(){
 		for(index = 0; index < currentWord.length; index++){
-			if(currentWord['']){
-				$('#word').append('');
+			if(currentWord[index] === ' '){
+				dashes.push(' - ');
 			} else if (currentWord[index]){
-			$('#word').append('_ ');
+			dashes.push('_ ');
 			}
 		}
+		$('#word').append(dashes);
 	};
 
-	function renderButtons(slideInRight, renderDashes){
+	function renderButtons(slideInRight){
 		for(index = 0; index < alphabet.length - 1; index++){
 			letterButton = $('<button>', {
 				class: "btn btn-default",
@@ -119,15 +119,10 @@ $(document).ready(function() {
 		slideInRight();
 	};
 
-	function slideInRight(callback1){
+	function slideInRight(callback){
 		$('#animateTitle').addClass('animated slideInRight');
-		callback1();
-	};
-
-	function hingeTitle(callback){
-		$('#animateTitle').addClass('animated hinge');
 		callback();
-	}
+	};
 
 	function playAnimation(){
 		renderButtons(function(){
@@ -136,22 +131,28 @@ $(document).ready(function() {
 			})
 		})
 	};
-
-
-
 	
-
 
 		$('#reset').on('click', function() {
 			window.location.reload();
 		});
 
-		playAnimation();
+		startGame();
 		
 
 		$('#alphabetContainer').on('click', function(event){
-			console.log(event.target.value);
-		})
+			userInput = event.target.value;
+			console.log(userInput);
+			for(i = 0; i < currentWord.length; i++){
+				if(userInput === currentWord[i]){
+					dashes.splice(i, 0);
+					dashes.splice(i, 1, userInput);
+					console.log(dashes);
+					$('#word').empty();
+					$('#word').append(dashes);
+				}
+			}
+		});
 		
 })
 </script>
