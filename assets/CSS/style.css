@@ -4,25 +4,43 @@
 	width: 25%;
 }
 
+#boton
+{
+	font-family: cursive;
+	color: #8a0707;
+}
+
 #word
 {
 	font-size: 50px;
+	color: #8a0707;
 }
 
 #footer
 {
 	clear: both;
-	position:fixed;
     bottom:0;
 	text-align: center;
 	height: 65px;
     width: 100%;
 }
 
+#winLoose
+{
+	font-size: 20px;
+	font-weight: 900;
+	font-family: cursive;
+	text-align: center;
+	color: #490e0e;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
 #category
 {
+	font-family: cursive;
 	text-align: center;
-	color: #222222;
+	color: #202e44;
 }
 
 #pic
@@ -69,4 +87,43 @@
 	color: black;
 	background-color: grey;
 	border-radius: 5px;
+}
+
+body 
+{ 
+  background: url("../images/limbo3.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
 }

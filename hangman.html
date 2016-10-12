@@ -10,17 +10,6 @@
 <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
 
-	<style>
-		body 
-			{ 
-			  background: url("assets/images/limbo3.jpg") no-repeat center center fixed; 
-			  -webkit-background-size: cover;
-			  -moz-background-size: cover;
-			  -o-background-size: cover;
-			  background-size: cover;
-			}
-	</style>
-
 </head>
 <body>
 <div class="container">
@@ -38,7 +27,10 @@
 				<!-- <button type="button" class="btn btn-default" class="buttonMargin" id="let"></button> -->
 			</div>
 
-</div>
+			<div id="winLoose">
+				<div>Wins: <span>0</span></div>
+				<div>Looses: <span>0</span></div>
+			</div>
 
 			<div id="category">
 				<h2>Secret Word Category</h2>
@@ -46,6 +38,9 @@
 				<div><span id="word"></span></div>
 			</div>
 
+				<br>
+
+				
 
 		<div id="footer">
 			<button id="reset"><span>RESET</span></button>
@@ -54,6 +49,8 @@
 				<audio autoplay>
 				  <source src="assets/sounds/eerie.mp3" type="audio/mpeg">
 				</audio>
+
+</div>
 </body>
 </html>
 
@@ -66,7 +63,8 @@ $(document).ready(function() {
 
 	var currentWord = "";
 	var userInput = "";
-	var guesses = "";
+	var guesses = 9;
+	var wrongGuesses = [];
 	var letterButton = [];
 	var dashes = [];
 	
@@ -76,10 +74,16 @@ $(document).ready(function() {
 
 					/*Creates an array of random words*/
 
-	var horror = ["THE BLAIR WITCH PROJECT", "RESIDENT EVIL", "THE AMITYVILLE HORROR", "THE STRANGERS", "THE CLOWN STATUE", "THE VANISHING HITCHHIKER"];
+	var horror = ["THE BLAIR WITCH PROJECT", 
+					"RESIDENT EVIL", 
+					"THE AMITYVILLE HORROR", 
+					"THE STRANGERS", 
+					"THE CLOWN STATUE", 
+					"THE VANISHING HITCHHIKER"];
 
 	function startGame(){
-		guesses = 10;
+		guesses = 9;
+		wrongGuesses = [];
 
 		currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
 
@@ -90,7 +94,7 @@ $(document).ready(function() {
 
 		playAnimation();
 
-	}
+	};
 
 	function renderDashes(){
 		for(index = 0; index < currentWord.length; index++){
@@ -150,6 +154,7 @@ $(document).ready(function() {
 					console.log(dashes);
 					$('#word').empty();
 					$('#word').append(dashes);
+
 				}
 			}
 		});
