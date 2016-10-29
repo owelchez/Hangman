@@ -147,8 +147,8 @@ $(document).ready(function() {
 		startGame();
 		
 
-		$('#alphabetContainer').on('click', function(event){
-			userInput = event.target.value;
+		$(':button').on('click', function(){
+			userInput = this.value;
 			console.log(userInput);
 			for(i = 0; i < currentWord.length; i++){
 				if(userInput === currentWord[i]){
