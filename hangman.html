@@ -96,6 +96,10 @@ $(document).ready(function() {
 
 	};
 
+	function checkWin(){
+		console.log('Check if there\'s any dashes left');
+	}
+
 	function renderDashes(){
 		for(index = 0; index < currentWord.length; index++){
 			if(currentWord[index] === ' '){
@@ -135,7 +139,6 @@ $(document).ready(function() {
 			})
 		})
 	};
-	
 
 		$('#reset').on('click', function() {
 			window.location.reload();
