@@ -74,20 +74,19 @@ $(document).ready(function() {
 
 					/*Creates an array of random words*/
 
-	var horror = ["THE BLAIR WITCH PROJECT", 
+	var horror = [	"BLAIR WITCH PROJECT", 
 					"RESIDENT EVIL", 
-					"THE AMITYVILLE HORROR", 
-					"THE STRANGERS", 
-					"THE CLOWN STATUE", 
-					"THE VANISHING HITCHHIKER"];
+					"AMITYVILLE HORROR", 
+					"STRANGERS", 
+					"CLOWN STATUE", 
+					"VANISHING HITCHHIKER",
+					"HELLO KITTY MURDER"	];
 
 	function startGame(){
 		guesses = 9;
 		wrongGuesses = [];
 
 		currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
-
-		//currentWord.split("");
 
 		console.log(currentWord);
 		console.log('Guesses ' + guesses);
@@ -97,7 +96,14 @@ $(document).ready(function() {
 	};
 
 	function checkWin(){
-		console.log('Check if there\'s any dashes left');
+		var winFlag = false;
+			for(index = 0; currentWord.length; index++){
+				if(currentWord[index] === '_'){
+					return false;
+				} else {
+					winFlag = true;
+				}
+			}
 	}
 
 	function renderDashes(){
@@ -157,7 +163,6 @@ $(document).ready(function() {
 					console.log(dashes);
 					$('#word').empty();
 					$('#word').append(dashes);
-
 				}
 			}
 		});
