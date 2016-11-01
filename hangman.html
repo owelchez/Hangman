@@ -67,6 +67,7 @@ $(document).ready(function() {
 	var wrongGuesses = [];
 	var letterButton = [];
 	var dashes = [];
+	var winFlag = 0;
 	
 					/*Create an array with the alphabet letters*/
 
@@ -85,6 +86,7 @@ $(document).ready(function() {
 	function startGame(){
 		guesses = 9;
 		wrongGuesses = [];
+		winFlag = 0;
 
 		currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
 
@@ -96,15 +98,14 @@ $(document).ready(function() {
 	};
 
 	function checkWin(){
-		var winFlag = false;
 			for(index = 0; currentWord.length; index++){
-				if(currentWord[index] === '_'){
-					return false;
+				if(currentWord[index] === '_ '){
+					break;
 				} else {
-					winFlag = true;
+					winFlag = 1;
 				}
 			}
-	}
+	};
 
 	function renderDashes(){
 		for(index = 0; index < currentWord.length; index++){
@@ -146,12 +147,7 @@ $(document).ready(function() {
 		})
 	};
 
-		$('#reset').on('click', function() {
-			window.location.reload();
-		});
-
-		startGame();
-		
+	startGame();
 
 		$(':button').on('click', function(){
 			userInput = this.value;
@@ -166,6 +162,12 @@ $(document).ready(function() {
 				}
 			}
 		});
+
+		$('#reset').on('click', function() {
+			window.location.reload();
+		});
+
+		
 		
 })
 </script>
