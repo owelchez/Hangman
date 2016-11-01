@@ -14,11 +14,11 @@
 <body>
 <div class="container">
 			<div id="animateTitle">
-				<img id="title" src="assets/images/welcome.png">
-				<img id="title2" src="assets/images/to.png">		
-				<img id="title2" src="assets/images/the.png">
-				<img id="title" src="assets/images/hangman.png">
-				<img id="title" src="assets/images/game.png">	
+				<img id="title" src="assets/images/title/welcome.png">
+				<img id="title2" src="assets/images/title/to.png">		
+				<img id="title2" src="assets/images/title/the.png">
+				<img id="title" src="assets/images/title/hangman.png">
+				<img id="title" src="assets/images/title/game.png">	
 			</div>
 
 			<br>
@@ -26,6 +26,8 @@
 			<div id="alphabetContainer">
 				<!-- <button type="button" class="btn btn-default" class="buttonMargin" id="let"></button> -->
 			</div>
+
+			<div id="bloodyLetters"></div>
 
 			<div id="winLoose">
 				<div>Wins: <span>0</span></div>
@@ -62,7 +64,8 @@ $(document).ready(function() {
 	var audioElement = document.createElement('audio');
 				        audioElement.setAttribute('src', 'assets/sounds/darkLaugh.mp3');
 
-	var wordChecker = "";
+	
+
 	var currentWord = "";
 	var userInput = "";
 	var guesses = 0;
@@ -71,7 +74,7 @@ $(document).ready(function() {
 	var letterButton = [];
 	var dashes = [];
 	var dash = 0;
-	var letter = 0;
+	var newString = "";
 	
 					/*Create an array with the alphabet letters*/
 
@@ -91,12 +94,11 @@ $(document).ready(function() {
 		guesses = 10;
 		misses = 0;
 
-		currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
+		//currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
+		currentWord = "RESIDENT EVIL"; // Harcoded this for testing
 		dash = currentWord.length;
-		wordChecker = currentWord;
-
+		
 		console.log(currentWord);
-		console.log('Word being compared ' + wordChecker);
 		console.log('Misses ' + misses);
 		console.log('Guesses ' + guesses);
 		console.log('Dash ' + dash);
@@ -145,11 +147,16 @@ $(document).ready(function() {
 		})
 	};
 
-	function checkWin(){
-
+	function checkWin(word1, word2){
+		if(word1 === word2){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	startGame();
+
 
 		$('#reset').on('click', function() {
 			window.location.reload();
@@ -162,14 +169,14 @@ $(document).ready(function() {
 					if(userInput === currentWord[i]){
 						dashes.splice(i, 0);
 						dashes.splice(i, 1, userInput);
-						dash--;
-						console.log(dashes);
-						console.log('Letters left ' + dash);
 						$('#word').empty();
 						$('#word').append(dashes);
-						checkWin();
-					}
+						dash--;
+						console.log('This is for dash ' + dash);
+					} 
+					//$('#bloodyLetters').append('<img id="letterImage" src="assets/images/alphabet/' + userInput + '.gif" />')
 				} 
+				this.disabled = true;
 		});
 		
 })
