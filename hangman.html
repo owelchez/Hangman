@@ -46,28 +46,32 @@
 			<button id="reset"><span>RESET</span></button>
 		</div>
 
-				<audio autoplay>
+				<!-- <audio autoplay>
 				  <source src="assets/sounds/eerie.mp3" type="audio/mpeg">
-				</audio>
+				</audio> -->
 
 </div>
 </body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.1.0.slim.min.js"   integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 
 	var audioElement = document.createElement('audio');
 				        audioElement.setAttribute('src', 'assets/sounds/darkLaugh.mp3');
 
+	var wordChecker = "";
 	var currentWord = "";
 	var userInput = "";
-	var guesses = 9;
-	var wrongGuesses = [];
+	var guesses = 0;
+	var wrongGuesses = 0;
+	var misses = 0;
 	var letterButton = [];
 	var dashes = [];
-	var winFlag = 0;
+	var dash = 0;
+	var letter = 0;
 	
 					/*Create an array with the alphabet letters*/
 
@@ -84,27 +88,21 @@ $(document).ready(function() {
 					"HELLO KITTY MURDER"	];
 
 	function startGame(){
-		guesses = 9;
-		wrongGuesses = [];
-		winFlag = 0;
+		guesses = 10;
+		misses = 0;
 
 		currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
+		dash = currentWord.length;
+		wordChecker = currentWord;
 
 		console.log(currentWord);
+		console.log('Word being compared ' + wordChecker);
+		console.log('Misses ' + misses);
 		console.log('Guesses ' + guesses);
+		console.log('Dash ' + dash);
 
 		playAnimation();
 
-	};
-
-	function checkWin(){
-			for(index = 0; currentWord.length; index++){
-				if(currentWord[index] === '_ '){
-					break;
-				} else {
-					winFlag = 1;
-				}
-			}
 	};
 
 	function renderDashes(){
@@ -112,7 +110,7 @@ $(document).ready(function() {
 			if(currentWord[index] === ' '){
 				dashes.push(' - ');
 			} else if (currentWord[index]){
-			dashes.push('_ ');
+			dashes.push(' _ ');
 			}
 		}
 		$('#word').append(dashes);
@@ -147,27 +145,32 @@ $(document).ready(function() {
 		})
 	};
 
-	startGame();
+	function checkWin(){
 
-		$(':button').on('click', function(){
-			userInput = this.value;
-			console.log(userInput);
-			for(i = 0; i < currentWord.length; i++){
-				if(userInput === currentWord[i]){
-					dashes.splice(i, 0);
-					dashes.splice(i, 1, userInput);
-					console.log(dashes);
-					$('#word').empty();
-					$('#word').append(dashes);
-				}
-			}
-		});
+	}
+
+	startGame();
 
 		$('#reset').on('click', function() {
 			window.location.reload();
 		});
 
-		
+		$(':button').on('click', function(){
+			userInput = this.value;
+			console.log(userInput);
+				for(i = 0; i < currentWord.length; i++){
+					if(userInput === currentWord[i]){
+						dashes.splice(i, 0);
+						dashes.splice(i, 1, userInput);
+						dash--;
+						console.log(dashes);
+						console.log('Letters left ' + dash);
+						$('#word').empty();
+						$('#word').append(dashes);
+						checkWin();
+					}
+				} 
+		});
 		
 })
 </script>
