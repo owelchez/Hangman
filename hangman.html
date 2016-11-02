@@ -22,7 +22,7 @@
 			</div>
 
 			<br>
-
+	<div id="ending">
 			<div id="alphabetContainer">
 				<!-- <button type="button" class="btn btn-default" class="buttonMargin" id="let"></button> -->
 			</div>
@@ -44,13 +44,15 @@
 
 				
 
-		<div id="footer">
-			<button id="reset"><span>RESET</span></button>
-		</div>
+			<div id="footer">
+				<button id="reset"><span>RESET</span></button>
+			</div>
 
-				<!-- <audio autoplay>
+	</div>
+
+				<audio autoplay>
 				  <source src="assets/sounds/eerie.mp3" type="audio/mpeg">
-				</audio> -->
+				</audio>
 
 </div>
 </body>
@@ -73,8 +75,8 @@ $(document).ready(function() {
 	var misses = 0;
 	var letterButton = [];
 	var dashes = [];
-	var dash = 0;
-	var newString = "";
+	var remainingLetters = 0;
+	var spaces = 0;
 	
 					/*Create an array with the alphabet letters*/
 
@@ -93,15 +95,16 @@ $(document).ready(function() {
 	function startGame(){
 		guesses = 10;
 		misses = 0;
-
 		//currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
 		currentWord = "RESIDENT EVIL"; // Harcoded this for testing
-		dash = currentWord.length;
+		spaces = (currentWord.split(" ").length - 1);
+		remainingLetters = (currentWord.length - spaces);
+		
 		
 		console.log(currentWord);
 		console.log('Misses ' + misses);
 		console.log('Guesses ' + guesses);
-		console.log('Dash ' + dash);
+		console.log('remainingLetters ' + remainingLetters);
 
 		playAnimation();
 
@@ -110,7 +113,7 @@ $(document).ready(function() {
 	function renderDashes(){
 		for(index = 0; index < currentWord.length; index++){
 			if(currentWord[index] === ' '){
-				dashes.push(' - ');
+				dashes.push(' ');
 			} else if (currentWord[index]){
 			dashes.push(' _ ');
 			}
@@ -155,6 +158,12 @@ $(document).ready(function() {
 		}
 	}
 
+	function runEnding(guesses){
+		if(guesses < 1){
+			$('#ending').empty();
+		}
+	}
+
 	startGame();
 
 
@@ -162,7 +171,7 @@ $(document).ready(function() {
 			window.location.reload();
 		});
 
-		$(':button').on('click', function(){
+		$(':button').on('click', function(callback){
 			userInput = this.value;
 			console.log(userInput);
 				for(i = 0; i < currentWord.length; i++){
@@ -171,12 +180,16 @@ $(document).ready(function() {
 						dashes.splice(i, 1, userInput);
 						$('#word').empty();
 						$('#word').append(dashes);
-						dash--;
-						console.log('This is for dash ' + dash);
+						remainingLetters--;
+						console.log('This is for remainingLetters ' + remainingLetters);
+						} 
 					} 
 					//$('#bloodyLetters').append('<img id="letterImage" src="assets/images/alphabet/' + userInput + '.gif" />')
-				} 
+			
 				this.disabled = true;
+				guesses--;
+				console.log('Guesses ' + guesses);
+				
 		});
 		
 })
