@@ -72,11 +72,12 @@ $(document).ready(function() {
 	var userInput = "";
 	var guesses = 0;
 	var wrongGuesses = 0;
-	var misses = 0;
+	var misses = 8;
 	var letterButton = [];
 	var dashes = [];
 	var remainingLetters = 0;
 	var spaces = 0;
+	var didFindLetter = false;
 	
 					/*Create an array with the alphabet letters*/
 
@@ -93,8 +94,6 @@ $(document).ready(function() {
 					"HELLO KITTY MURDER"	];
 
 	function startGame(){
-		guesses = 10;
-		misses = 0;
 		//currentWord = horror[Math.floor(Math.random() * (1 + horror.length - 1))];
 		currentWord = "RESIDENT EVIL"; // Harcoded this for testing
 		spaces = (currentWord.split(" ").length - 1);
@@ -158,8 +157,8 @@ $(document).ready(function() {
 		}
 	}
 
-	function runEnding(guesses){
-		if(guesses < 1){
+	function runEnding(misses){
+		if(misses < 1){
 			$('#ending').empty();
 		}
 	}
@@ -173,23 +172,28 @@ $(document).ready(function() {
 
 		$(':button').on('click', function(callback){
 			userInput = this.value;
+			didFindLetter = false;
 			console.log(userInput);
 				for(i = 0; i < currentWord.length; i++){
 					if(userInput === currentWord[i]){
+						didFindLetter = true;
 						dashes.splice(i, 0);
 						dashes.splice(i, 1, userInput);
 						$('#word').empty();
 						$('#word').append(dashes);
 						remainingLetters--;
 						console.log('This is for remainingLetters ' + remainingLetters);
+						guesses++;
+						console.log('Right Guesses ' + guesses);
+						
 						} 
 					} 
 					//$('#bloodyLetters').append('<img id="letterImage" src="assets/images/alphabet/' + userInput + '.gif" />')
-			
+				if(!didFindLetter === true){
+					misses--;
+				}
 				this.disabled = true;
-				guesses--;
-				console.log('Guesses ' + guesses);
-				
+				runEnding(misses);
 		});
 		
 })
