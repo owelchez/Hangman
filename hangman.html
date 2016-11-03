@@ -71,7 +71,6 @@ $(document).ready(function() {
 	var currentWord = "";
 	var userInput = "";
 	var guesses = 0;
-	var wrongGuesses = 0;
 	var misses = 8;
 	var letterButton = [];
 	var dashes = [];
@@ -98,7 +97,6 @@ $(document).ready(function() {
 		currentWord = "RESIDENT EVIL"; // Harcoded this for testing
 		spaces = (currentWord.split(" ").length - 1);
 		remainingLetters = (currentWord.length - spaces);
-		
 		
 		console.log(currentWord);
 		console.log('Misses ' + misses);
@@ -165,7 +163,6 @@ $(document).ready(function() {
 
 	startGame();
 
-
 		$('#reset').on('click', function() {
 			window.location.reload();
 		});
@@ -185,6 +182,7 @@ $(document).ready(function() {
 						console.log('This is for remainingLetters ' + remainingLetters);
 						guesses++;
 						console.log('Right Guesses ' + guesses);
+						console.log('Wrong Guesses ' + misses);
 						
 						} 
 					} 
