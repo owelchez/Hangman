@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="assets/CSS/reset.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
+<link rel="stylesheet" type="text/css" href="assets/CSS/animate.css">
 
 </head>
 <body>
@@ -147,17 +147,11 @@ $(document).ready(function() {
 		})
 	};
 
-	function checkWin(word1, word2){
-		if(word1 === word2){
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	function runEnding(misses){
 		if(misses < 1){
 			$('#ending').empty();
+			$('#ending').append('<img id="endingHanged" class="animated zoomIn" src="assets/images/animate/picture1.gif"/>');
+			$('#ending').append('<img id="endingHanged" class="animated zoomIn" src="assets/images/animate/1.gif"/>');
 		}
 	}
 
@@ -186,9 +180,11 @@ $(document).ready(function() {
 						
 						} 
 					} 
-					//$('#bloodyLetters').append('<img id="letterImage" src="assets/images/alphabet/' + userInput + '.gif" />')
+					
 				if(!didFindLetter === true){
 					misses--;
+					console.log('Right Guesses ' + guesses);
+					console.log('Wrong Guesses ' + misses);
 				}
 				this.disabled = true;
 				runEnding(misses);

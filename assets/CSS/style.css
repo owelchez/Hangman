@@ -7,9 +7,15 @@ body
   background-size: cover;
 }
 
-#letterImage
+#endingHanged
 {
-	
+	border-radius: 5px;
+	width: 75%;
+}
+
+#ending
+{
+	text-align: center;
 }
 
 #title
