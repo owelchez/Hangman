@@ -30,8 +30,12 @@
 			<div id="bloodyLetters"></div>
 
 			<div id="winLoose">
-				<div>Wins: <span>0</span></div>
-				<div>Looses: <span>0</span></div>
+				<table>
+					<tr><div>Wins: <span id="wins">0</span></div></tr>
+					<tr><div>Looses: <span id="looses">0</span></div></tr>
+					<tr><div>Misses: <span id="Misses">0</span></div></tr>
+					<tr><div>Letters Entered: <span id="lettersEntered"></span></div></tr>
+				</table>
 			</div>
 
 			<div id="category">
@@ -153,7 +157,7 @@ $(document).ready(function() {
 			$('#ending').append('<img id="endingHanged" class="animated zoomIn" src="assets/images/animate/picture1.gif"/>');
 			$('#ending').append('<img id="endingHanged" class="animated zoomIn" src="assets/images/animate/1.gif"/>');
 		}
-	}
+	};
 
 	startGame();
 
@@ -183,6 +187,7 @@ $(document).ready(function() {
 					
 				if(!didFindLetter === true){
 					misses--;
+					$('#misses').empty().append(misses);
 					console.log('Right Guesses ' + guesses);
 					console.log('Wrong Guesses ' + misses);
 				}
