@@ -7,16 +7,29 @@ body
   background-size: cover;
 }
 
+.anotherTry
+{
+	float: left;
+	margin-top: 50px;
+	margin-left: 40px;
+}
+
 #endingHanged
 {
 	border-radius: 5px;
-	width: 75%;
-	margin-bottom: -90px;
+	width: 50%;
 }
 
 #ending
 {
 	text-align: center;
+}
+
+#escaped
+{
+	border-radius: 5px;
+	width: 50%;
+	margin-bottom: 50px;
 }
 
 #title
