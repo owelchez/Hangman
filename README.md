@@ -11,4 +11,4 @@ Hangman was built using HTML, CSS, Jquery and JavaScript.
 
 ![alt text](https://github.com/owelchez/Hangman/blob/master/assets/images/screenshots/2.jpg "You've Escaped!")
 
-## [Click Here to play Hangman](https://desolate-lowlands-26032.herokuapp.com/)
+## [Click Here to play Hangman](https://shielded-fjord-50814.herokuapp.com/)
